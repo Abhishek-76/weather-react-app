@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import api_keys from "./api_keys";
 import ReactAnimatedWeather from "react-animated-weather/build/ReactAnimatedWeather";
 
-const forecast = (props) => {
+const Forecast = (props) => {
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
   const [weather, setWeather] = useState("");
@@ -11,9 +11,9 @@ const forecast = (props) => {
   const search = (city) => {
     axios
       .get(
-        `${apiKeys.base}weather?q=${
+        `${api_keys.base}weather?q=${
           city != "[object Object]" ? city : query
-        }&units=metric&APPID=${apiKeys.key}`
+        }&units=metric&APPID=${api_keys.key}`
       )
       .then((response) => {
         setWeather(response.data);
@@ -120,4 +120,4 @@ const forecast = (props) => {
   );
 };
 
-export default forecast;
+export default Forecast;
